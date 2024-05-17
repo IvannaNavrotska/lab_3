@@ -83,6 +83,7 @@ def client_code(handler: Handler) -> None:
     else:
         print('The shape cannot be handled')
 
+
 if __name__ == '__main__':
     
     cube = CubeHandler()
