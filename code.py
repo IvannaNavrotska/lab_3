@@ -1,6 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+
 class Handler(ABC):
     
     @abstractmethod
@@ -13,24 +14,22 @@ class Handler(ABC):
 
 
 class AbstractHandler(Handler):
-
+    
     _next_handler: Handler = None
 
     def set_next(self, handler: Handler) -> Handler:
         self._next_handler = handler
         return handler
 
-    @abstractmethod
     def handle(self, shape):
         if self._next_handler:
             return self._next_handler.handle(shape)
         return None
 
 
-class CubeHandler(Handler):
+class CubeHandler(AbstractHandler):
     
     def handle(self, shape):
-
         if shape['type'] == 'cube':
             volume = shape['height'] ** 3
             return f'The volume of your cube is: {volume}'
@@ -38,10 +37,9 @@ class CubeHandler(Handler):
             return super().handle(shape)
 
 
-class CylinderHandler(Handler):
+class CylinderHandler(AbstractHandler):
     
     def handle(self, shape):
-
         if shape['type'] == 'cylinder':
             volume = 3.14 * (shape['radius'] ** 2) * shape['height']
             return f'The volume of your cylinder is: {volume}'
@@ -49,10 +47,9 @@ class CylinderHandler(Handler):
             return super().handle(shape)
 
 
-class SphereHandler(Handler):
-
+class SphereHandler(AbstractHandler):
+    
     def handle(self, shape):
-
         if shape['type'] == 'sphere':
             volume = (4 / 3) * 3.14 * (shape['radius'] ** 3)
             return f'The volume of your sphere is: {volume}'
@@ -61,7 +58,7 @@ class SphereHandler(Handler):
 
 
 def client_code(handler: Handler) -> None:
-
+    
     shape_type = input('Select a shape type (cube, cylinder, or sphere): ')
     shape = {}
     
