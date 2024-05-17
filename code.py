@@ -68,7 +68,6 @@ def client_code(handler: Handler) -> None:
             print('Error: Height cannot be negative')
             return
         shape = {'type': 'cube', 'height': height}
-
         
     elif shape_type == 'cylinder':
         radius = float(input('Enter the radius of your cylinder base: '))
