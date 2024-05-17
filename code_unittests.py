@@ -13,6 +13,12 @@ class TestShapeHandlers(unittest.TestCase):
         self.cube.set_next(self.cylinder).set_next(self.sphere)
 
 
+    def test_set_next(self):
+        
+        self.assertIs(self.cube._next_handler, self.cylinder)
+        self.assertIs(self.cylinder._next_handler, self.sphere)
+
+
     def test_cube_handler(self):
         
         shape = {'type': 'cube', 'height': 3}
