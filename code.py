@@ -64,15 +64,25 @@ def client_code(handler: Handler) -> None:
     
     if shape_type == 'cube':
         height = float(input('Enter the height of your cube: '))
+        if height < 0:
+            print('Error: Height cannot be negative')
+            return
         shape = {'type': 'cube', 'height': height}
+
         
     elif shape_type == 'cylinder':
         radius = float(input('Enter the radius of your cylinder base: '))
         height = float(input('Enter the height of your cylinder: '))
+        if radius < 0 or height < 0:
+            print('Error: Radius and height cannot be negative')
+            return
         shape = {'type': 'cylinder', 'radius': radius, 'height': height}
         
     elif shape_type == 'sphere':
         radius = float(input('Enter the radius of your sphere: '))
+        if radius < 0:
+            print('Error: Radius cannot be negative')
+            return
         shape = {'type': 'sphere', 'radius': radius}
         
 # Skip this part if you don't think snakes are cylindres
@@ -86,6 +96,9 @@ def client_code(handler: Handler) -> None:
         if answer == 'yes':
             radius = float(input('Enter the radius of your cylinder base (cm): '))
             height = float(input('Enter the height of your cylinder (cm): '))
+            if radius < 0 or height < 0:
+                print('Error: Radius and height cannot be negative')
+                return
             shape = {'type': 'cylinder', 'radius': radius, 'height': height}
         else:
             print("Thanks for your choice. We hope your snake isn't very upset")
