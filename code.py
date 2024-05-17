@@ -74,6 +74,20 @@ def client_code(handler: Handler) -> None:
     elif shape_type == 'sphere':
         radius = float(input('Enter the radius of your sphere: '))
         shape = {'type': 'sphere', 'radius': radius}
+
+    elif shape_type == 'snake':
+        
+        print('Sorry we cannnot calculate the volume of a snake\n'
+              'But we can imagine your snake as a cylinder')
+        answer = input('Is it an acceptable option? (yes or no): ')
+        
+        if answer == 'yes':
+            radius = float(input('Enter the radius of your cylinder base (cm): '))
+            height = float(input('Enter the height of your cylinder (cm): '))
+            shape = {'type': 'cylinder', 'radius': radius, 'height': height}
+        else:
+            print("Thanks for your choice. We hope your snake isn't very upset")
+            return
     
     result = handler.handle(shape)
     if result:
